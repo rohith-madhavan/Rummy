@@ -17,6 +17,14 @@ public class RummyHand {
 		hand.addAll(card);
 	}
 
+	public String toString() {
+		return hand.toString();
+	}
+	
+	public ArrayList<Card> getCards() {
+		return this.hand;
+	}
+	
 	public void addCard(Card c) {
 		hand.add(c);
 	}
