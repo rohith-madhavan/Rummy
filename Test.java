@@ -9,9 +9,9 @@ public class Test {
 		h.addCard(new Card("5","SPADE"));
 		h.addCard(new Card("6","SPADE"));
 		
-		h.addCard(new Card("2","HEART"));
-		h.addCard(new Card("3","HEART"));
-		h.addCard(new Card("4","HEART"));
+		h.addCard(new Card("8","HEART"));
+		h.addCard(new Card("8","SPADE"));
+		h.addCard(new Card("8","DIAMOND"));
 //		
 //		h.addCard(new Card("8","SPADE"));
 //		h.addCard(new Card("8","DIAMOND"));

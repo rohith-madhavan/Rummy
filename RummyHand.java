@@ -106,7 +106,15 @@ public class RummyHand {
 			{
 				s+=hand.toString()+"Is a sequence\n";
 			}
-			if(hand.isSet(hand.getCards())){
+		}
+		cards=hand.sortByValue(cards);
+		for(int i=0;i<cards.size()-2;i++){
+			hand=new RummyHand();
+			for(int j=i;j<i+3;j++){
+				hand.addCard(cards.get(j));
+			}
+			if(hand.isSet(hand.getCards()))
+			{
 				s+=hand.toString()+"Is a set\n";
 			}
 		}
