@@ -116,7 +116,7 @@ public class RummyHand {
 			if(current.isSameSuit(prev)) {				
 				int diff = current.getValue() - prev.getValue();
 				if(diff == 1) {
-					rankDiff += diff + "";
+					rankDiff += "1";
 				}
 				else {
 					rankDiff += "x";
@@ -135,8 +135,6 @@ public class RummyHand {
 		String suitDiff = "";
 		String cardStr = "";
 		
-		ArrayList<Card> sameCards = new ArrayList<Card>();
-		
 		for(int i = 0; i < c.size(); ++i) {
 			Card curr = c.get(i);
 			cardStr += curr.convertToDisplayValue(curr.getValue()); 
@@ -144,7 +142,7 @@ public class RummyHand {
 		
 		for(int i = 0; i < c.size(); ++i) {
 			if(countMatches(cardStr, c.get(i).getDisplayValue()) > 2) {
-				suitDiff += "0";
+				suitDiff += c.get(i).getDisplayValue();
 			}
 			else {
 				suitDiff += "x";
