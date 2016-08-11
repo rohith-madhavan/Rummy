@@ -85,10 +85,16 @@ public class RummyHand {
 		String seqStr = "A23456789TJQKA";
 		String cardStr = "";
 		
-		c = sortBySuitAndValue(c);
+		cards = sortBySuitAndValue(cards);
 		
-		for(int i = 0; i < c.size(); ++i) {
-			Card curr = c.get(i);
+		cardStr += cards.convertToDisplayValue(cards.get(0).getValue());
+    
+		for(int i = 1; i < cards.size() - 1; ++i) {
+			Card prev = cards.get(i-1);
+      Card curr = cards.get(i);
+			if(curr.getSuit() != prev.getSuit()) {
+      	return false;
+      }
 			cardStr += curr.convertToDisplayValue(curr.getValue()); 
 		}
 		
