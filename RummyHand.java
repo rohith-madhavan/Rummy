@@ -5,6 +5,8 @@ import java.util.Comparator;
 
 public class RummyHand {
 
+	String rankDiffStr = "";
+	String suitDiffStr = "";
 	private Card jokerCard;
 	private ArrayList<Card> hand;
 	
@@ -74,6 +76,49 @@ public class RummyHand {
 	public int cardsToDeclare(ArrayList<Card> c){
 		return 0;
 	}
+
 	
+	public String getRankDiff(ArrayList<Card> c) {
+		
+		c = sortBySuitAndValue(c);
+		String rankDiff = "";
+		
+		for(int i = 1; i < c.size(); ++i) {
+			
+			Card current = c.get(i);
+			Card prev = c.get(i-1);
+			
+			if(current.isSameSuit(prev)) {
+				int diff = current.getValue() - prev.getValue();
+				if(diff == 0 || diff == 1) {
+					rankDiff += diff + "";
+				}
+				else {
+					rankDiff += "x";
+				}
+			}
+			else {
+				rankDiff += "-";
+			}
+		}
+		return rankDiff;
+		
+	}
+	
+	public boolean isRummy() {
+		// 1) constructSets();
+		// 2) constructSequences();
+		// 3) for all combinations of sequences
+		// 		3.1) pick two sequences, remove those cards
+		// 		3.2) see how many sets can now be constructed.
+		//		3.3) 
+//		
+//		4 3 3 3
+//		
+//		2 sets => 
+//		
+		
+		return true;
+	}
 
 }

@@ -26,6 +26,7 @@ public class Test {
 		System.out.println(h.sortByValue(h.getCards()).toString());
 		System.out.println(h.sortBySuit(h.getCards()).toString());
 		System.out.println(h.sortBySuitAndValue(h.getCards()).toString());
+		System.out.println(h.getRankDiff(h.getCards()));
 	}
 	
 }
