@@ -36,6 +36,21 @@ public class RummyHand {
 		return c;
 	}
 	
+	public int countMatches(String str, String findStr) {
+		int lastIndex = 0;
+		int count = 0;
+		while(lastIndex != -1){
+
+		    lastIndex = str.indexOf(findStr,lastIndex);
+
+		    if(lastIndex != -1){
+		        count ++;
+		        lastIndex += findStr.length();
+		    }
+		}
+		return count;
+	}
+	
 	public ArrayList<Card> sortBySuit(ArrayList<Card> c) {
 		c.sort((Card c1, Card c2) -> c1.getSuit().compareTo(c2.getSuit()));
 		return c;
@@ -93,14 +108,14 @@ public class RummyHand {
 		
 		c = sortBySuitAndValue(c);
 		String rankDiff = "";
-		
+		rankDiff += "x";
 		for(int i = 1; i < c.size(); ++i) {			
 			Card current = c.get(i);
 			Card prev = c.get(i-1);
 			
 			if(current.isSameSuit(prev)) {				
 				int diff = current.getValue() - prev.getValue();
-				if(diff == 0 || diff == 1) {
+				if(diff == 1) {
 					rankDiff += diff + "";
 				}
 				else {
@@ -108,7 +123,7 @@ public class RummyHand {
 				}
 			}
 			else {
-				rankDiff += "-";
+				rankDiff += "x";
 			}
 		}
 		return rankDiff;
@@ -116,36 +131,39 @@ public class RummyHand {
 	}
 	
 	public String getSuitDiff(ArrayList<Card> c) {
-		 c = sortByValue(c);
-		 String suitDiff = "";
-		 
-		 for(int i = 1; i < c.size(); ++i) {
-			 Card current = c.get(i);
-			 Card prev = c.get(i-1);
-			 if(current.getValue() - prev.getValue() == 0) {
-				 suitDiff += "0";
-			 }
-			 else {
-				 suitDiff += "x";
-			 }
-		 }
-		 
-		 return suitDiff;
+		c = sortBySuitAndValue(c);
+		String suitDiff = "";
+		String cardStr = "";
+		
+		ArrayList<Card> sameCards = new ArrayList<Card>();
+		
+		for(int i = 0; i < c.size(); ++i) {
+			Card curr = c.get(i);
+			cardStr += curr.convertToDisplayValue(curr.getValue()); 
+		}
+		
+		for(int i = 0; i < c.size(); ++i) {
+			if(countMatches(cardStr, c.get(i).getDisplayValue()) > 2) {
+				suitDiff += "0";
+			}
+			else {
+				suitDiff += "x";
+			}
+		}
+		
+		return suitDiff;
 	}
 	
 	public boolean isRummy() {
-		// 1) constructSets();
-		// 2) constructSequences();
-		// 3) for all combinations of sequences
-		// 		3.1) pick two sequences, remove those cards
-		// 		3.2) see how many sets can now be constructed.
-		//		3.3) 
-//		
-//		4 3 3 3
-//		
-//		2 sets => 
-//		
 		
+		ArrayList<Card> c = hand;
+		for(int i = 1; i < c.size(); ++i) {
+			
+		}
+		rankDiffStr = getRankDiff(hand);
+		suitDiffStr = getSuitDiff(hand);
+		System.out.println(countMatches(rankDiffStr, "x11"));
+		System.out.println(countMatches(suitDiffStr, "00"));
 		return true;
 	}
 
