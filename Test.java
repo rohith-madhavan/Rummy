@@ -24,9 +24,15 @@ public class Test {
 		
 		System.out.println(h.toString());
 		System.out.println(h.sortByValue(h.getCards()).toString());
-		System.out.println(h.sortBySuit(h.getCards()).toString());
+//		System.out.println(h.sortBySuit(h.getCards()).toString());
 		System.out.println(h.sortBySuitAndValue(h.getCards()).toString());
+		
+		// -> Use rankDiff for identifying the entire list of Sequences - 11
 		System.out.println(h.getRankDiff(h.getCards()));
+		// -> Use suitDiff for identifying the entire list of Sets - 00
+		System.out.println(h.getSuitDiff(h.getCards()));
+		
+//		System.out.println(h.isSequence(h.getCards()));
 	}
 	
 }

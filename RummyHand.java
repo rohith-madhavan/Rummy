@@ -62,11 +62,22 @@ public class RummyHand {
 	}
 	
 	public boolean isSet(ArrayList<Card> c){
+
 		return false;
 	}
 	
 	public boolean isSequence(ArrayList<Card> c){
-		return false;
+		String seqStr = "A23456789TJQKA";
+		String cardStr = "";
+		
+		c = sortBySuitAndValue(c);
+		
+		for(int i = 0; i < c.size(); ++i) {
+			Card curr = c.get(i);
+			cardStr += curr.convertToDisplayValue(curr.getValue()); 
+		}
+		
+		return seqStr.contains(cardStr);
 	}
 	
 	public boolean canDeclare(ArrayList<Card> c){
@@ -83,12 +94,11 @@ public class RummyHand {
 		c = sortBySuitAndValue(c);
 		String rankDiff = "";
 		
-		for(int i = 1; i < c.size(); ++i) {
-			
+		for(int i = 1; i < c.size(); ++i) {			
 			Card current = c.get(i);
 			Card prev = c.get(i-1);
 			
-			if(current.isSameSuit(prev)) {
+			if(current.isSameSuit(prev)) {				
 				int diff = current.getValue() - prev.getValue();
 				if(diff == 0 || diff == 1) {
 					rankDiff += diff + "";
@@ -103,6 +113,24 @@ public class RummyHand {
 		}
 		return rankDiff;
 		
+	}
+	
+	public String getSuitDiff(ArrayList<Card> c) {
+		 c = sortByValue(c);
+		 String suitDiff = "";
+		 
+		 for(int i = 1; i < c.size(); ++i) {
+			 Card current = c.get(i);
+			 Card prev = c.get(i-1);
+			 if(current.getValue() - prev.getValue() == 0) {
+				 suitDiff += "0";
+			 }
+			 else {
+				 suitDiff += "x";
+			 }
+		 }
+		 
+		 return suitDiff;
 	}
 	
 	public boolean isRummy() {
